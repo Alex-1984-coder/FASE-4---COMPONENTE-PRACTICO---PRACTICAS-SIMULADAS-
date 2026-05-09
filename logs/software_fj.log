@@ -310,3 +310,81 @@ DuracionInvalidaError: [ERR_RESERVA_DURACION] Duración '2.0h' fuera del rango p
 [2026-05-09 18:38:51] [ERROR] Error inesperado al confirmar reserva C9474E3A: [ERR_SERVICIO_PARAMETRO] Parámetro inválido 'descuento': debe estar entre 0.0 y 0.99, recibido 1.5.
 [2026-05-09 18:38:51] [INFO] Proceso de confirmación de reserva C9474E3A finalizado
 [2026-05-09 18:38:51] [EVENTO] === SISTEMA FINALIZADO SIN INTERRUPCIONES ===
+[2026-05-09 18:40:39] [EVENTO] === INICIO DEL SISTEMA SOFTWARE FJ ===
+[2026-05-09 18:40:39] [EVENTO] Cliente registrado: CC-1001 - Ana Martínez
+[2026-05-09 18:40:39] [EVENTO] Cliente registrado: NIT-9002 - TechCorp SAS
+[2026-05-09 18:40:39] [ERROR] Intento de registro duplicado: CC-1001
+[2026-05-09 18:40:39] [EVENTO] Cliente registrado: CC-2050 - Carlos Ruiz
+[2026-05-09 18:40:39] [EVENTO] Servicio agregado: SALA-A1 - Sala Ejecutiva A
+[2026-05-09 18:40:39] [EVENTO] Servicio agregado: EQ-L01 - Laptop HP ProBook
+[2026-05-09 18:40:39] [EVENTO] Servicio agregado: ASE-001 - Consultoría en Ciberseguridad
+[2026-05-09 18:40:39] [EVENTO] Reserva 131E0561 creada | Cliente: CC-1001 | Servicio: SALA-A1 | Horas: 3.0
+[2026-05-09 18:40:39] [EVENTO] Reserva 131E0561: PENDIENTE → CONFIRMADA | confirmación manual
+[2026-05-09 18:40:39] [INFO] Reserva 131E0561 confirmada | Total: $298,452.00
+[2026-05-09 18:40:39] [INFO] Proceso de confirmación de reserva 131E0561 finalizado
+[2026-05-09 18:40:39] [EVENTO] Reserva 3A9309DC creada | Cliente: NIT-9002 | Servicio: EQ-L01 | Horas: 10.0
+[2026-05-09 18:40:39] [EVENTO] Reserva 3A9309DC: PENDIENTE → CONFIRMADA | confirmación manual
+[2026-05-09 18:40:39] [INFO] Reserva 3A9309DC confirmada | Total: $306,425.00
+[2026-05-09 18:40:39] [INFO] Proceso de confirmación de reserva 3A9309DC finalizado
+[2026-05-09 18:40:39] [EVENTO] Reserva 3A9309DC: CONFIRMADA → PROCESADA | servicio entregado
+[2026-05-09 18:40:39] [INFO] Intento de procesamiento de reserva 3A9309DC completado
+[2026-05-09 18:40:39] [EVENTO] Reserva 7D0C0E9B creada | Cliente: CC-2050 | Servicio: ASE-001 | Horas: 2.0
+[2026-05-09 18:40:39] [EVENTO] Reserva 7D0C0E9B: PENDIENTE → CONFIRMADA | confirmación manual
+[2026-05-09 18:40:39] [INFO] Reserva 7D0C0E9B confirmada | Total: $714,000.00
+[2026-05-09 18:40:39] [INFO] Proceso de confirmación de reserva 7D0C0E9B finalizado
+[2026-05-09 18:40:39] [ERROR] Error al crear reserva: [ERR_RESERVA_DURACION] Duración '15.0h' fuera del rango permitido [0h – 99h].
+  TRAZA: Traceback (most recent call last):
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 980, in __init__
+    servicio.validar_parametros(horas, **parametros_servicio)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 712, in validar_parametros
+    raise ParametroServicioInvalidoError(
+    ...<2 lines>...
+    )
+ParametroServicioInvalidoError: [ERR_SERVICIO_PARAMETRO] Parámetro inválido 'horas': para sala debe estar entre 1.0h y 8.0h.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 1179, in crear
+    reserva = Reserva(cliente, servicio, horas, notas, **params)
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 983, in __init__
+    raise DuracionInvalidaError(horas, 0, 99) from e
+DuracionInvalidaError: [ERR_RESERVA_DURACION] Duración '15.0h' fuera del rango permitido [0h – 99h].
+[2026-05-09 18:40:39] [INFO] Servicio 'Sala Ejecutiva A' disponibilidad → False
+[2026-05-09 18:40:39] [ERROR] Error al crear reserva: [ERR_SERVICIO_NO_DISPONIBLE] El servicio 'Sala Ejecutiva A' no está disponible actualmente.
+  TRAZA: Traceback (most recent call last):
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 1179, in crear
+    reserva = Reserva(cliente, servicio, horas, notas, **params)
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 977, in __init__
+    raise ServicioNoDisponibleError(servicio.nombre)
+ServicioNoDisponibleError: [ERR_SERVICIO_NO_DISPONIBLE] El servicio 'Sala Ejecutiva A' no está disponible actualmente.
+[2026-05-09 18:40:39] [INFO] Servicio 'Sala Ejecutiva A' disponibilidad → True
+[2026-05-09 18:40:39] [EVENTO] Reserva 131E0561: CONFIRMADA → CANCELADA | Cliente solicitó reprogramación
+[2026-05-09 18:40:39] [EVENTO] Reserva 131E0561 cancelada: Cliente solicitó reprogramación
+[2026-05-09 18:40:39] [ERROR] No se pudo confirmar reserva 131E0561: [ERR_RESERVA_OPERACION] Operación 'CONFIRMADA' no permitida en estado 'CANCELADA'.
+[2026-05-09 18:40:39] [INFO] Proceso de confirmación de reserva 131E0561 finalizado
+[2026-05-09 18:40:39] [ERROR] Error al crear reserva: [ERR_RESERVA_DURACION] Duración '2.0h' fuera del rango permitido [0h – 99h].
+  TRAZA: Traceback (most recent call last):
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 980, in __init__
+    servicio.validar_parametros(horas, **parametros_servicio)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 721, in validar_parametros
+    raise ParametroServicioInvalidoError(
+    ...<2 lines>...
+    )
+ParametroServicioInvalidoError: [ERR_SERVICIO_PARAMETRO] Parámetro inválido 'num_asistentes': excede la capacidad máxima de 10 personas.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 1179, in crear
+    reserva = Reserva(cliente, servicio, horas, notas, **params)
+  File "c:\Users\USER\Documents\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS\FASE-4---COMPONENTE-PRACTICO---PRACTICAS-SIMULADAS-\EJERCICIO 1.py", line 983, in __init__
+    raise DuracionInvalidaError(horas, 0, 99) from e
+DuracionInvalidaError: [ERR_RESERVA_DURACION] Duración '2.0h' fuera del rango permitido [0h – 99h].
+[2026-05-09 18:40:39] [EVENTO] Reserva 0C182078 creada | Cliente: CC-2050 | Servicio: ASE-001 | Horas: 1.0
+[2026-05-09 18:40:39] [EVENTO] Reserva 0C182078: PENDIENTE → CONFIRMADA | confirmación manual
+[2026-05-09 18:40:39] [ERROR] Error inesperado al confirmar reserva 0C182078: [ERR_SERVICIO_PARAMETRO] Parámetro inválido 'descuento': debe estar entre 0.0 y 0.99, recibido 1.5.
+[2026-05-09 18:40:39] [INFO] Proceso de confirmación de reserva 0C182078 finalizado
+[2026-05-09 18:40:39] [EVENTO] === SISTEMA FINALIZADO SIN INTERRUPCIONES ===

@@ -1,7 +1,7 @@
 """
-=======================================================================
-SISTEMA SOFTWARE FJ 
-=======================================================================
+
+SISTEMA SOFTWARE 
+
 Módulos incluidos:
   1. Excepciones personalizadas
   2. Sistema de logs
@@ -9,8 +9,6 @@ Módulos incluidos:
   4. Servicios (abstracto + 3 especializados)
   5. Reservas
   6. Main con 20 operaciones de demostración
-
-Ejecución: python software_fj_completo.py
 
 """
 
