@@ -9,6 +9,11 @@ Módulos incluidos:
   4. Servicios (abstracto + 3 especializados)
   5. Reservas
   6. Main con 20 operaciones de demostración
+  # Alexis Jaramillo Trujillo
+  # Programa : Ingenieria de sistemas 
+  # Curso: Programacion
+  # 12 de Mayo 2026 
+  # Ejercicio 1 
 
 """
 
