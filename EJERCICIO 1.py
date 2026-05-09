@@ -1,6 +1,6 @@
 """
 =======================================================================
-SISTEMA SOFTWARE FJ - ARCHIVO ÚNICO COMPLETO Y EJECUTABLE
+SISTEMA SOFTWARE FJ 
 =======================================================================
 Módulos incluidos:
   1. Excepciones personalizadas
@@ -9,15 +9,14 @@ Módulos incluidos:
   4. Servicios (abstracto + 3 especializados)
   5. Reservas
   6. Main con 20 operaciones de demostración
-=======================================================================
+
 Ejecución: python software_fj_completo.py
-=======================================================================
+
 """
 
 
-# =======================================================================
 # SECCIÓN 1: EXCEPCIONES PERSONALIZADAS
-# =======================================================================
+
 
 class SoftwareFJError(Exception):
     """Excepción base del sistema Software FJ."""
@@ -33,7 +32,7 @@ class SoftwareFJError(Exception):
         super().__init__(f"[{codigo}] {mensaje}")
 
 
-# ── Excepciones de Cliente ─────────────────────────────────────────────
+# Excepciones de Cliente
 
 class ClienteError(SoftwareFJError):
     """Excepción base para errores relacionados con clientes."""
@@ -77,7 +76,7 @@ class DatosClienteInvalidosError(ClienteError):
         )
 
 
-# ── Excepciones de Servicio ────────────────────────────────────────────
+# Excepciones de Servicio 
 
 class ServicioError(SoftwareFJError):
     """Excepción base para errores relacionados con servicios."""
@@ -133,7 +132,7 @@ class CostoInconsistenteError(ServicioError):
         )
 
 
-# ── Excepciones de Reserva ─────────────────────────────────────────────
+# Excepciones de Reserva 
 
 class ReservaError(SoftwareFJError):
     """Excepción base para errores relacionados con reservas."""
@@ -189,9 +188,8 @@ class ReservaConflictoError(ReservaError):
         )
 
 
-# =======================================================================
 # SECCIÓN 2: SISTEMA DE LOGS
-# =======================================================================
+
 
 # Módulo para interactuar con el sistema operativo (rutas, directorios)
 import os
@@ -268,9 +266,8 @@ def leer_logs() -> str:
         return "(Sin registros aún)"
 
 
-# =======================================================================
 # SECCIÓN 3: ENTIDADES (CLASE ABSTRACTA BASE Y CLIENTE)
-# =======================================================================
+
 
 # Módulo para trabajar con expresiones regulares (validación de correo, teléfono, etc.)
 import re
@@ -278,9 +275,9 @@ import re
 from abc import ABC, abstractmethod
 
 
-# ══════════════════════════════════════════════════════
+
 # CLASE ABSTRACTA BASE
-# ══════════════════════════════════════════════════════
+
 class EntidadBase(ABC):
     """
     Clase abstracta que representa cualquier entidad registrable en el sistema.
@@ -335,9 +332,8 @@ class EntidadBase(ABC):
         return f"{self.__class__.__name__}(id='{self._id}', nombre='{self._nombre}')"
 
 
-# ══════════════════════════════════════════════════════
 # CLASE CLIENTE
-# ══════════════════════════════════════════════════════
+
 class Cliente(EntidadBase):
     """
     Representa un cliente de Software FJ.
@@ -470,7 +466,7 @@ class Cliente(EntidadBase):
             # Si alguna validación falla, retorna False sin propagar la excepción
             return False
 
-    # ── Gestión de reservas del cliente ───────────────
+    #  Gestión de reservas del cliente 
     def agregar_reserva(self, id_reserva: str):
         # Solo agrega el ID si no está ya en la lista (evita duplicados)
         if id_reserva not in self._reservas:
@@ -486,9 +482,9 @@ class Cliente(EntidadBase):
         return list(self._reservas)
 
 
-# ══════════════════════════════════════════════════════
+
 # REPOSITORIO DE CLIENTES
-# ══════════════════════════════════════════════════════
+
 class RepositorioClientes:
     """
     Gestiona el almacenamiento en memoria de todos los clientes.
@@ -540,13 +536,13 @@ class RepositorioClientes:
         return len(self._clientes)
 
 
-# =======================================================================
-# SECCIÓN 4: SERVICIOS
-# =======================================================================
 
-# ══════════════════════════════════════════════════════
+# SECCIÓN 4: SERVICIOS
+
+
+
 # CLASE ABSTRACTA SERVICIO
-# ══════════════════════════════════════════════════════
+
 class Servicio(EntidadBase):
     """
     Clase abstracta base para todos los servicios de Software FJ.
@@ -673,9 +669,9 @@ class Servicio(EntidadBase):
         return self.calcular_costo_con_impuesto(horas, descuento=descuento_total)
 
 
-# ══════════════════════════════════════════════════════
+
 # SERVICIO 1: RESERVA DE SALA
-# ══════════════════════════════════════════════════════
+
 class ReservaSala(Servicio):
     """Servicio de reserva de salas de reuniones."""
 
@@ -750,9 +746,9 @@ class ReservaSala(Servicio):
         )
 
 
-# ══════════════════════════════════════════════════════
+
 # SERVICIO 2: ALQUILER DE EQUIPO
-# ══════════════════════════════════════════════════════
+
 class AlquilerEquipo(Servicio):
     """Servicio de alquiler de equipos tecnológicos."""
 
@@ -827,9 +823,7 @@ class AlquilerEquipo(Servicio):
         )
 
 
-# ══════════════════════════════════════════════════════
 # SERVICIO 3: ASESORÍA ESPECIALIZADA
-# ══════════════════════════════════════════════════════
 class AsesoriaEspecializada(Servicio):
     """Servicio de asesoría y consultoría profesional."""
 
@@ -900,9 +894,9 @@ class AsesoriaEspecializada(Servicio):
         )
 
 
-# ══════════════════════════════════════════════════════
+
 # REPOSITORIO DE SERVICIOS
-# ══════════════════════════════════════════════════════
+
 class RepositorioServicios:
     """Gestiona el catálogo de servicios disponibles en memoria."""
 
@@ -948,16 +942,15 @@ class RepositorioServicios:
         return len(self._servicios)
 
 
-# =======================================================================
+
 # SECCIÓN 5: RESERVAS
-# =======================================================================
+
 
 # Módulo para generar identificadores únicos para cada reserva
 import uuid
 
-# ══════════════════════════════════════════════════════
 # CLASE RESERVA
-# ══════════════════════════════════════════════════════
+
 class Reserva:
     """
     Representa una reserva que integra un Cliente, un Servicio,
@@ -1024,7 +1017,7 @@ class Reserva:
             f"Servicio: {servicio.id} | Horas: {horas}"
         )
 
-    # ── Propiedades ───────────────────────────────────
+    # Propiedades 
     @property
     def id(self) -> str:
         # Expone el ID único de la reserva como solo lectura
@@ -1060,7 +1053,7 @@ class Reserva:
         # Expone la fecha y hora de creación como solo lectura
         return self._fecha_creacion
 
-    # ── Transiciones de estado ────────────────────────
+    # Transiciones de estado 
     def _cambiar_estado(self, nuevo_estado: str, motivo: str = ""):
         # Verifica que la transición solicitada esté permitida desde el estado actual
         if nuevo_estado not in self.TRANSICIONES[self._estado]:
@@ -1173,9 +1166,7 @@ class Reserva:
         return self.describir()
 
 
-# ══════════════════════════════════════════════════════
 # REPOSITORIO DE RESERVAS
-# ══════════════════════════════════════════════════════
 class RepositorioReservas:
     """Gestiona todas las reservas del sistema en memoria."""
 
@@ -1223,13 +1214,13 @@ class RepositorioReservas:
         return len(self._reservas)
 
 
-# =======================================================================
+
 # SECCIÓN 6: PROGRAMA PRINCIPAL CON 20 OPERACIONES DE DEMOSTRACIÓN
-# =======================================================================
+
 
 import sys
 
-# ── Utilidades de presentación ────────────────────────────────────────
+# Utilidades de presentación
 
 # Separador mayor para títulos de bloque
 SEP_MAYOR = "═" * 65
@@ -1267,7 +1258,7 @@ def mostrar_costo(desglose: dict):
     print(f"     TOTAL:     ${desglose['total']:>12,.2f}")
 
 
-# ── Bloque 1: Clientes ────────────────────────────────────────────────
+#  Bloque 1: Clientes 
 
 def bloque_clientes(repo_clientes: RepositorioClientes):
     titulo("BLOQUE 1 — REGISTRO DE CLIENTES")
@@ -1331,7 +1322,7 @@ def bloque_clientes(repo_clientes: RepositorioClientes):
     return repo_clientes
 
 
-# ── Bloque 2: Servicios ───────────────────────────────────────────────
+#  Bloque 2: Servicios 
 
 def bloque_servicios(repo_servicios: RepositorioServicios):
     titulo("BLOQUE 2 — CREACIÓN DE SERVICIOS")
@@ -1405,7 +1396,7 @@ def bloque_servicios(repo_servicios: RepositorioServicios):
     return repo_servicios
 
 
-# ── Bloque 3: Reservas ────────────────────────────────────────────────
+# Bloque 3: Reservas 
 
 def bloque_reservas(repo_clientes, repo_servicios, repo_reservas):
     titulo("BLOQUE 3 — GESTIÓN DE RESERVAS")
@@ -1535,7 +1526,7 @@ def bloque_reservas(repo_clientes, repo_servicios, repo_reservas):
     info(f"Total reservas creadas en el sistema: {repo_reservas.total()}")
 
 
-# ── Bloque 4: Resumen final ───────────────────────────────────────────
+#  Bloque 4: Resumen final 
 
 def bloque_resumen(repo_clientes, repo_servicios, repo_reservas):
     titulo("BLOQUE 4 — RESUMEN FINAL DEL SISTEMA")
@@ -1571,7 +1562,7 @@ def bloque_resumen(repo_clientes, repo_servicios, repo_reservas):
     print(f"  Reservas:  {repo_reservas.total()}")
 
 
-# ── Punto de entrada principal ────────────────────────────────────────
+# Punto de entrada principal 
 
 def main():
     # Imprime el encabezado visual del sistema al iniciar
